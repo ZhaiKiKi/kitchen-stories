@@ -1,0 +1,252 @@
+<template>
+	<main>
+		<div class="wrapper clearfix">
+			<div class="header">
+				<i class="iconfont icon-detail-left" @click='back'></i>
+				<input id='search' type="text" placeholder="技巧 / 原料 / 酱汁" autofocus="autofocus" />
+				<img src="../../assets/image/icon/del.png" @click='del'/>
+			</div>
+			<ul>
+				<li></li>
+			</ul>
+		</div>
+		
+		<div class="header">
+			<i class="iconfont icon-nav" @click='getMenu'></i>
+			<input type="text" placeholder="技巧 / 原料 / 酱汁" @focus='pull' />
+			<i class="iconfont icon-seach" @click='pull'></i>
+		</div>
+		
+		<h1>用刀技巧<span>查看全部</span></h1>
+		<div class="common clearfix">
+	        <ul class="common-ul" >
+	          <li v-for="(v,i) in data" v-if="i<4">
+	          	<router-link to='/details'><img :src="v.src"/></router-link>
+	          	<h3>{{v.title}}</h3>
+				<span>{{v.time}}分钟</span><span>{{v.like}}次观看</span>
+				<img src="../../assets/image/icon/play.png" class="icon"/>
+	          </li>
+	        </ul>
+	    </div>
+	    
+	    <h1>烘焙方法<span>查看全部</span></h1>
+		<div class="common clearfix">
+	        <ul class="common-ul" >
+	          <li v-for="(v,i) in data" v-if="i>3&&i<8">
+	          	<router-link to='/details'><img :src="v.src"/></router-link>
+	          	<h3>{{v.title}}</h3>
+				<span>{{v.time}}分钟</span><span>{{v.like}}次观看</span>
+				<img src="../../assets/image/icon/play.png" class="icon"/>
+	          </li>
+	        </ul>
+	    </div>
+	    
+	    <h1>日常基础烹调法<span>查看全部</span></h1>
+		<div class="common clearfix">
+	        <ul class="common-ul" >
+	          <li v-for="(v,i) in data" v-if="i>7&&i<12">
+	          	<router-link to='/details'><img :src="v.src"/></router-link>
+	          	<h3>{{v.title}}</h3>
+				<span>{{v.time}}分钟</span><span>{{v.like}}次观看</span>
+				<img src="../../assets/image/icon/play.png" class="icon"/>
+	          </li>
+	        </ul>
+	    </div>
+	    
+	    <h1>自制<span>查看全部</span></h1>
+		<div class="common clearfix">
+	        <ul class="common-ul" >
+	          <li v-for="(v,i) in data" v-if="i>11&&i<16">
+	          	<router-link to='/details'><img :src="v.src"/></router-link>
+	          	<h3>{{v.title}}</h3>
+				<span>{{v.time}}分钟</span><span>{{v.like}}次观看</span>
+				<img src="../../assets/image/icon/play.png" class="icon"/>
+	          </li>
+	        </ul>
+	    </div>
+		
+	</main>
+</template>
+
+<style scoped>
+	/*搜索框*/
+	.clearfix:before,
+	.clearfix:after{
+		content: '';
+		display: table;
+		clear: both;
+	}
+	.clearfix{
+		*zoom: 1;
+	}
+	
+	main{
+		width: 100%;
+		height: 100vh;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+	.header{
+		width: 94%;
+		border: 1px solid #cacaca;
+		margin:3% ;
+		height: 7%;
+		border-radius: 4px;
+		line-height: 45px;
+		box-shadow: 0px 0px 1px #cacaca;
+	}
+	.header i:nth-of-type(1){
+		font-size: 26px;
+		padding: 0 7% 0 5%;
+		color: #515151;
+	}
+	.header i:nth-of-type(2){
+		font-size: 24px;
+		color: #515151;
+	}
+	.header input{
+		border: none;
+		outline: none;
+		width: 67%;
+		height: 90%;
+		caret-color: #F4EA2A;
+	}
+	.header input::-webkit-input-placeholder {
+         font-size: 18px;
+    }
+	
+	
+	/*wrapper*/
+	.wrapper{
+		width: 100%;
+		height: 100vh;
+		display: none;
+		background: rgba(0,0,0,0.3);
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 1;
+	}
+	.wrapper .header{
+		background: white;
+		margin-bottom: 0px;
+	}
+	.wrapper img{
+		width: 17px;
+	}
+	
+	/*轮播*/
+	h1{
+		font-size: 20px;
+		margin: 8% 0 4% 5%;
+		color: black;
+	}
+	h1 span{
+		float: right;
+		color: #F4EA2A;
+		font-size: 14px;
+		margin-right: 4%;
+		margin-top: 5px;
+	}
+	
+	.common {
+		width: 92%;
+		height: 37%;
+		margin: 0 4%;
+		background-color: #fff;
+		overflow-x: scroll;
+		-webkit-overflow-x: scroll;
+	}
+	
+	.common::-webkit-scrollbar {
+		width: 0;
+		height: 0;
+		background-color: #fff;
+	}
+	
+	.common-ul {
+		min-width: 930px;
+		height: 100%;
+		/*周围留白：*/
+		display: flex;
+		justify-content: flex-start;
+	}
+	
+	.common li {
+		width: 230px;
+		height: 99%;
+		display: inline-block;
+		margin-right: 1em;
+		border: 1px solid #cacaca;
+		box-shadow: 0px 0px 1px #cacaca;
+		border-radius: 12px;
+		overflow: hidden;
+	}
+	.common li:nth-last-of-type(1){
+		margin-right: 0;
+	}
+	.common li a img{
+		width: 100%;
+	}
+	.common h3{
+		margin:5px;
+		text-indent: 0.5em;
+		color: #454545;
+	}
+	.common span{
+		display: inline-block;
+		font-size: 14px;
+		margin:2% 0px 0px 5%;
+		color: #898989;
+	}
+	.common span:nth-of-type(2){
+		margin-left:5%;
+	}
+	.common span i{
+		font-size: 25px;
+		margin-right: 5px;
+	}
+	.common .icon{
+		width: 40px;
+		height: 40px;
+		position: relative;
+		top: -137px;
+		left: -69px;
+	}
+	
+</style>
+
+<script type="text/javascript">
+	export default {
+		data(){
+			return{
+				list:[],
+				msg:'',
+				data:[],
+			}
+		},
+		methods: {
+			getMenu(){
+				document.getElementById('menu').style.left=0
+				$('#menu a').eq(0).removeClass('active')
+				$('#menu a').eq(1).addClass('active')
+			},
+			pull(){
+				$('.wrapper')[0].style.display="block"
+			},
+			back(){
+				$('.wrapper')[0].style.display="none"
+			},
+			del(){
+				$('#search').val('')
+			}
+		},
+		mounted(){
+			this.$http.get('tips.json').then(function(res){
+				console.log(res.body)
+				this.data=res.body.data
+			})
+		}
+	}
+</script>
